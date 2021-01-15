@@ -1,0 +1,16 @@
+<input type="text" [(ngModel)]="myCurrentGuess" /> 
+
+<button (click)="onGuessNow()">Guess Now!</button> 
+
+
+<button (click)="onResetGameNow()">Reset Game!</button> 
+
+
+
+<p>Debug session :</p>
+<p>My current guess is {{myCurrentGuess}}</p>
+<p>guess position right : {{currentGuessResult.posRightCount}}</p>
+<p>guess color right  : {{currentGuessResult.colorRightCount}}</p>
+<p>is game Win : {{currentGuessResult.isGuessWinGame}}</p>
+<p>Hidden real answer : {{hiddenRealAnswer}}</p>
+
