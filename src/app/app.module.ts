@@ -5,15 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GamemapComponent } from './gamemap/gamemap.component';
 import { FormsModule } from '@angular/forms';
+import { DisplaytableComponent } from './displaytable/displaytable.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GamemapComponent
+    GamemapComponent,
+    DisplaytableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],
