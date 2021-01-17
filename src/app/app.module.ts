@@ -2,11 +2,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { GamemapComponent } from './gamemap/gamemap.component';
+
+
 import { FormsModule } from '@angular/forms';
-import { DisplaytableComponent } from './displaytable/displaytable.component';
+
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+
+
+import { AppComponent } from './app.component';
+import { DisplaytableComponent } from './displaytable/displaytable.component';
+import { GamemapComponent } from './gamemap/gamemap.component';
+
+const appRoutes: Routes = [
+  { path: 'playmastermind', component: GamemapComponent },
+  { path: 'showtable', component: DisplaytableComponent },
+];
 
 @NgModule({
   declarations: [
@@ -18,7 +29,11 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
