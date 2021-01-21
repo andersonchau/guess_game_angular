@@ -28,7 +28,7 @@ export class TodoDataServiceService {
     var dateParts = dateString.split("/");
 
     
-    var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]); 
+    var dateObject = new Date(+dateParts[2], +dateParts[1] - 1, +dateParts[0]); 
 
     this.todoList.push(new TodoJob(this.nextIdx,desc,dateObject));
     // for real application , this is an HTTP POST to backend server. 

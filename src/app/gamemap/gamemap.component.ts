@@ -10,6 +10,8 @@ import { GuessResult } from '../GuessResult';
 })
 export class GamemapComponent implements OnInit {
 
+
+  justClickedBall : string = "";
   clickedNumber : number = 0;
   myCurrentGuess : string = "";
   gameServiceDebugStr : string = "";
@@ -17,7 +19,8 @@ export class GamemapComponent implements OnInit {
   guessResultArrayReversed : GuessResult[] = [];
   guessResultArrayDescriptionReversed : string[] = [];
   hiddenRealAnswer : string  = "";
-
+  debugSelectedColor : string = "";
+  currentGuessBallList : string[] = [];
   constructor(private gameService : GameService) { 
     this.reInitData();
   }
@@ -30,6 +33,8 @@ export class GamemapComponent implements OnInit {
     this.hiddenRealAnswer = this.gameService.getRealAnswer();
     this.guessResultArrayReversed = [];
     this.guessResultArrayDescriptionReversed = [];
+    this.currentGuessBallList = [];
+    
   }
   
   
@@ -46,12 +51,16 @@ export class GamemapComponent implements OnInit {
 
   onGuessNow() {
     // assume the input format is correct , TODO : do form checking ... 
+    if( this.currentGuessBallList.length >= 4) {
+      this.updateGuessFromChosen();
+      this.currentGuessResult = this.gameService.processGuess(this.myCurrentGuess);
+      //this.gameService.addToGuessList(this.myCurrentGuess);
     
-    this.currentGuessResult = this.gameService.processGuess(this.myCurrentGuess);
-    //this.gameService.addToGuessList(this.myCurrentGuess);
-    this.clickedNumber++;
-    this.guessResultArrayReversed = this.gameService.getGuesResultHistory().reverse();
-    this.processUIString();
+      this.guessResultArrayReversed = this.gameService.getGuesResultHistory().reverse();
+      this.processUIString();
+      this.clickedNumber++;
+    }
+
     
   }
 
@@ -84,7 +93,31 @@ export class GamemapComponent implements OnInit {
   getColorIdxByPos(guess:string ,pos :number) : string{
     return this.getColorIdx(parseInt(guess.charAt(pos)));
   }
-  
+
+  updateGuessFromChosen(){
+    this.myCurrentGuess = "";
+    for(var colorItemStr in this.currentGuessBallList){
+      this.myCurrentGuess = this.myCurrentGuess.concat(colorItemStr);
+    }
+  }
+  getIdxFromColorStr(colorStr:string) : string{
+    switch(colorStr){
+      case "black":
+        return "1";
+      case "yellow":
+        return "2";
+      case "blue":
+        return "3";
+      case "red":
+        return "4";
+      case "green":
+        return "5";
+      default:
+        return "6";
+    }
+  }
+
+
   getColorIdx(colorIdx : number) : string {
     switch(colorIdx){
       case 1:
@@ -105,4 +138,14 @@ export class GamemapComponent implements OnInit {
   hasGameWon() : boolean {
     return this.gameService.gameState == 1;
   }
+
+
+  onJustChoseAColor(justChosenBall : string ){
+    this.debugSelectedColor = justChosenBall;
+    if ( this.currentGuessBallList.length <  4) {
+      this.currentGuessBallList.push(justChosenBall); 
+    }
+  }
+
+  
 }

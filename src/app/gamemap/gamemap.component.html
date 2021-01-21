@@ -7,6 +7,8 @@
     </div>
   </div>
 
+  <app-colorselector [masterTrial]=clickedNumber (colorChosenRequest)="onJustChoseAColor($event)"></app-colorselector>
+<!--
   <div class="row"  style = "margin-top:20px" >
     <div class="col-sm">
          <span class="dot" [style.background-color]="getColorIdx(1)"></span> for 1
@@ -14,32 +16,46 @@
          <span class="dot" [style.background-color]="getColorIdx(3)"></span> for 3
          <span class="dot" [style.background-color]="getColorIdx(4)"></span> for 4
          <span class="dot" [style.background-color]="getColorIdx(5)"></span> for 5
-         <span class="dot" [style.background-color]="getColorIdx(6)"></span> for 6, Guess 4 positions 
-        
-         
+         <span class="dot" [style.background-color]="getColorIdx(6)"></span> for 6, Guess 4 positions     
     </div>
-
   </div>
+-->
 
 
-  <div class="row" style="margin-top:20px">
-  <span style="margin:10px">
-    <input type="text" [(ngModel)]="myCurrentGuess" /> 
-    </span>
-    <span style="margin:10px">
-    <button type="button" class="btn btn-primary" [disabled]="hasGameWon() == true" (click)="onGuessNow()" >Guess Now!</button>
-    </span>
-    <span style="margin:10px">
-    <button type="button" class="btn btn-success" (click)="onResetGameNow()" >Reset Game!</button>   
-    </span>
-  </div>
+  
 
   <div class="row">
      <span *ngIf="hasGameWon() == true">
        YOU HAVE WON THE GAME!
     </span> 
   </div>
-   
+
+   <!-- Draw your currently chosen Balls -->
+   <div class="row">
+     You have chosen :
+   </div>
+   <div class="row"  style = "margin-top:10px; margin-bottom:10px;" >
+         
+        <!-- your {{i+1}}th guess is {{item}} -->
+         <span *ngFor="let currBallColor of currentGuessBallList; index as i; ">
+            <span class="dot" [style.background-color]="currBallColor"></span> 
+          </span>
+    </div>
+    <div class="row" style="margin-top:20px">
+      <!--
+      <span style="margin:10px">
+        <input type="text" [(ngModel)]="myCurrentGuess" /> 
+        </span>
+        -->
+        <span style="margin:10px">
+        <button type="button" class="btn btn-primary" [disabled]="hasGameWon() == true" (click)="onGuessNow()" >Guess Now!</button>
+        </span>
+        <span style="margin:10px">
+        <button type="button" class="btn btn-success" (click)="onResetGameNow()" >Reset Game!</button>   
+        </span>
+      </div>
+
+
     <div class="row"  style = "margin-top:20px" *ngFor="let item of getGuessHistoryReverse(); index as i; ">
       <div class="col-sm">
            <!-- your {{i+1}}th guess is {{item}} -->
@@ -73,10 +89,7 @@
     <p></p>
     <p></p>
     <p></p>
-<p>Debug session :</p>
-<p>My current guess is {{myCurrentGuess}}</p>
-<p>guess position right : {{currentGuessResult.posRightCount}}</p>
-<p>guess color right  : {{currentGuessResult.colorRightCount}}</p>
-<p>is game Win : {{currentGuessResult.isGuessWinGame}}</p>
-<p>Hidden real answer : {{hiddenRealAnswer}}</p>
+<p>Debug session : {{debugSelectedColor}}</p>
+<p>Ball List : {{currentGuessBallList.length}}</p>
+
 -->

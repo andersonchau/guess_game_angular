@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { DisplaytableComponent } from './displaytable/displaytable.component';
 import { GamemapComponent } from './gamemap/gamemap.component';
 import { TodoComponent } from './todo/todo.component';
+import { ColorselectorComponent } from './colorselector/colorselector.component';
 
 
 const appRoutes: Routes = [
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     AppComponent,
     GamemapComponent,
     DisplaytableComponent,
-    TodoComponent
+    TodoComponent,
+    ColorselectorComponent
   ],
   imports: [
     BrowserModule,

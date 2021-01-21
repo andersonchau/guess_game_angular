@@ -1,0 +1,19 @@
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+.myText{
+    height: 25px;
+    width: 25px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
