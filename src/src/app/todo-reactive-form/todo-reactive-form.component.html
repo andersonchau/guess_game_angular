@@ -1,0 +1,28 @@
+
+<p>This demonstrate Reactive form validation </p>
+
+  <div class="container">
+    <h2>Match the 2 passwords</h2>
+    
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+      <div class="form-group">
+        <label for="password1">Password:</label>
+        <input formControlName="password1" type="password" class="form-control" id="password1" placeholder="Enter Password" name="email">
+        <span class="text-danger"
+        *ngIf="getFormControls.password1.touched && getFormControls.password1.errors?.invalidPassword">
+        Password should have minimum 8 characters
+    </span> 
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input formControlName="password2" type="password" class="form-control" id="password2" placeholder="Retype password" name="pwd">
+      
+    </div>
+      <button type="submit" class="btn btn-default" [disabled]="myForm.invalid">Submit</button>
+    </form>
+<!--
+    <p>Your input password1 : {{ myForm.get('password1').value }}</p>
+    <p>Your input password1 : {{ myForm.get('password2').value }}</p>
+    <p>Form validity: {{   !myForm.invalid }}</p>
+    -->
+  </div>
