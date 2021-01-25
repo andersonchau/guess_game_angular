@@ -8,7 +8,7 @@
 3. Simple Router : app.component.html
 4. Template driven form : /app/todo/todo.component.html
 5. @Input , @Output child-parent component communication colorselector.component.ts/html
-5. reactive form with a custom validator installed
+5. reactive form with a custom validator installed todo-reactiveform.component
   <!-- Spring Boot Items -->
 
   ![alt text](https://github.com/andersonchau/guess_game_angular/blob/main/screenshot.png?raw=true)
